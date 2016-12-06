@@ -1,0 +1,26 @@
+<%# app/views/students/_list.html.erb %>
+<div id="filterrific_results">
+
+<table>
+  
+  <tr>
+      <th>Nombre</th>
+      <th>Télefono</th>
+      <th colspan="3"></th>
+  </tr>
+    <% @libretum.each do |libretum| %>
+      <tr>
+       <td><%= libretum.nombre %></td>
+              <td><%= libretum.tlf %></td>
+              <td><%= link_to 'Show', libretum %></td>
+              <td><%= link_to 'Edit', edit_libretum_path(libretum) %></td>
+              <td><%= link_to 'Destroy', libretum, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+    <br>
+    <%= link_to 'New Libretum', new_libretum_path %>
+  </table>
+</div>
+  
+

@@ -1,0 +1,2 @@
+module LibretaHelper
+end

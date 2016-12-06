@@ -1,0 +1,6 @@
+<%# app/views/students/index.js.erb %>
+<% js = escape_javascript(
+  render(partial: 'libreta/list', locals: { libretum: @libretum })
+) %>
+$("#filterrific_results").html("<%= js %>");
+
