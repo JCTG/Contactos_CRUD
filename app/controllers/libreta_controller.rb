@@ -7,7 +7,7 @@ class LibretaController < ApplicationController
   # GET /libreta
   # GET /libreta.json
   def index
-    
+   
     @filterrific = initialize_filterrific(
       Libretum,
       params[:filterrific],
@@ -26,7 +26,6 @@ class LibretaController < ApplicationController
 
      puts "los registros son #{@libretum.size}"
      puts ">>>>>>>>>>>>>>>>> El filtro es #{@filterrific }"
-     
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -41,7 +40,10 @@ class LibretaController < ApplicationController
       # There is an issue with the persisted param_set. Reset it.
       puts "Had to reset filterrific params: #{ e.message }"
       redirect_to(reset_filterrific_url(format: :html)) and return
-    
+
+      #Envio de mails
+      enviarCorreo
+
   end
 
   # GET /libreta/1
@@ -97,6 +99,23 @@ class LibretaController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #Envio de correos 
+  def enviar_correo
+    puts 'Ingreso al metodo >>>>>>>>>>>>>enviar_correo'
+    #Creamos el usuario
+    #@persona1 = Persona.create({ nombre: 'Ricardo Sampayo', email: 'me@ricardoSampayo.com',email_confirmation: 'me@ricardoSampayo.com"', identificador: "123456789", sexo: 'm', telefono: '123456789123' })
+
+    # Llamamos al   ActionMailer que creamos
+    #ActionCorreo.bienvenido_email(@persona1).deliver
+    ApplicationMailer.bienvenido_email("Juan Carlos TG").deliver
+    # mostramos el usuario en formato JSON
+    #render json: @persona1
+    render json:  @libretum
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

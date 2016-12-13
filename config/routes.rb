@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
-  resources :libreta
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :libreta do
+  	
+		member do
+			get 'mail', to: 'libreta#enviar_correo'
+		end
+  		#get '/libreta/:id/mail', to: 'libreta#enviar_correo'
+	end
+
 end
