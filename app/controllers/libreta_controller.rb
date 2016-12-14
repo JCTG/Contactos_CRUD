@@ -1,4 +1,4 @@
-class LibretaController < ApplicationController
+class LibretaController < ActionController::Base
   before_action :set_libretum, only: [:show, :edit, :update, :destroy]
 
   http_basic_authenticate_with :name => "rails", :password => "secret", :except => [:index, :show]
@@ -40,9 +40,6 @@ class LibretaController < ApplicationController
       # There is an issue with the persisted param_set. Reset it.
       puts "Had to reset filterrific params: #{ e.message }"
       redirect_to(reset_filterrific_url(format: :html)) and return
-
-      #Envio de mails
-      enviarCorreo
 
   end
 
@@ -99,23 +96,17 @@ class LibretaController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  #Envio de correos 
+  #envio de correos
   def enviar_correo
-    puts 'Ingreso al metodo >>>>>>>>>>>>>enviar_correo'
     #Creamos el usuario
     #@persona1 = Persona.create({ nombre: 'Ricardo Sampayo', email: 'me@ricardoSampayo.com',email_confirmation: 'me@ricardoSampayo.com"', identificador: "123456789", sexo: 'm', telefono: '123456789123' })
 
     # Llamamos al   ActionMailer que creamos
     #ActionCorreo.bienvenido_email(@persona1).deliver
-    ApplicationMailer.bienvenido_email("Juan Carlos TG").deliver
+    ApplicationMailer.bienvenido_email(@user).deliver
     # mostramos el usuario en formato JSON
-    #render json: @persona1
-    render json:  @libretum
+    render json: "Mail was succesfully send!!!"
   end
-
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
