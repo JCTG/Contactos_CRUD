@@ -6,17 +6,19 @@
   <tr>
       <th>Nombre</th>
       <th>Télefono</th>
+      <th>correo</th>
       <th colspan="3"></th>
   </tr>
     <% @libretum.each do |libretum| %>
       <tr>
        <td><%= libretum.nombre %></td>
           <td><%= libretum.tlf %></td>
+          <td><%= libretum.email %></td>
           <td><%= link_to 'Show', libretum %></td>
           <td><%= link_to 'Edit', edit_libretum_path(libretum) %></td>
           <td><%= link_to 'Destroy', libretum, method: :delete, data: { confirm: 'Are you sure?' } %> </td> 
           <td>
-              <%= link_to 'Enviar mails',  mail_libretum_path(libretum) %>
+              <%= link_to 'Send Mails',  mail_libretum_path(libretum) %>
           </td>
       </tr>
     <% end %>

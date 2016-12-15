@@ -1,12 +1,16 @@
 class Libretum < ApplicationRecord
 
-	validates :nombre, :presence => true,
-                       :length => { :maximum => 200 }
+  #require 'validates_email_format_of'
 
-	validates :tlf   , :presence => true,
-					   :length   => {:minimum => 10}
+	validates :nombre, :presence => true,:length => { :maximum => 200 }
 
+	validates :tlf   , :presence => true,:length   => {:minimum => 10}
 
+  validates :email   , :presence => true 
+  # se requiere una gema 'email_validator' en el archivo de gem
+  validates :email, :email_format => {:message => 'the format of the email is not correct'}
+
+  #validación de filtros
   filterrific(
   default_filter_params: { search_query: 'Guadalupe' },
   #sorted_by: 'created_at_desc' },

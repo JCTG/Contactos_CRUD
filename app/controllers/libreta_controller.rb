@@ -60,7 +60,12 @@ class LibretaController < ActionController::Base
   # POST /libreta
   # POST /libreta.json
   def create
+    puts 'ingresa al metodo creta >>>>'
     @libretum = Libretum.new(libretum_params)
+
+    puts 'Los valores del objeto son  nomb = #{@libretum.nombre} , 
+                                      tel  = #{@libretum.tlf}    ,
+                                      email  = #{@libretum.email},'
 
     respond_to do |format|
       if @libretum.save
@@ -116,6 +121,6 @@ class LibretaController < ActionController::Base
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def libretum_params
-      params.require(:libretum).permit(:nombre, :tlf)
+      params.require(:libretum).permit(:nombre, :tlf , :email)
     end
 end

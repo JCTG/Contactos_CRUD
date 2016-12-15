@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'juan.tovar@vun.mx'
+  default from: 'ruby.rails.demo@gmail.com'
   layout 'mailer'
 
 
@@ -7,7 +7,7 @@ class ApplicationMailer < ActionMailer::Base
 	  #@user = user
 	  @url  = 'http://codeHero.co'
 	  #mail(to: @user.email, subject: 'Aprende a programar con nuestros cursos gratis')
-	  mail(to: 'juan_carlos_tovar_garnica@hotmail.com', subject: 'Aprende a programar con nuestros cursos gratis')
+	  mail(to: 'ruby.rails.demo@gmail.com', subject: 'Aprende a programar con nuestros cursos gratis')
   end
 
 end
